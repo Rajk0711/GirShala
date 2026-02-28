@@ -50,20 +50,59 @@ def contact_page():
 
     with c2:
         st.markdown("### Send a Message")
-        # Ensure the form is clean and variables are defined
-        with st.form("contact_form", clear_on_submit=True):
-            name = st.text_input("Full Name", placeholder="Enter your name")
-            email = st.text_input("Email Address", placeholder="example@email.com")
-            message = st.text_area("Your Message", placeholder="How can we help you?", height=120)
+        
+        # 1. THE "NUCLEAR" CSS FIX FOR VISIBILITY
+        st.markdown("""
+        <style>
+        /* Target ONLY the button inside the form */
+        div.stFormSubmitButton > button {
+            background-color: #ff4b4b !important; /* Solid Red */
+            color: white !important;               /* White Text */
+            opacity: 1 !important;                 /* Force visibility */
+            visibility: visible !important;        /* Force visibility */
+            display: flex !important;              /* Force display */
             
-            # The 'submitted' variable captures the form click
+            /* Sizing & Shape */
+            width: 100% !important;
+            height: 45px !important;
+            border-radius: 8px !important;
+            border: none !important;
+            
+            /* Text Styling */
+            font-size: 16px !important;
+            font-weight: 600 !important;
+            text-align: center !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+
+        /* Hover effect so it feels interactive */
+        div.stFormSubmitButton > button:hover {
+            background-color: #d33636 !important;
+            border: none !important;
+            color: white !important;
+        }
+
+        /* Ensure form labels and inputs are clearly visible */
+        [data-testid="stForm"] label p {
+            color: #333 !important;
+            font-weight: 600;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+        with st.form("contact_form", clear_on_submit=True):
+            name = st.text_input("Full Name", placeholder="Your Name")
+            email = st.text_input("Email Address", placeholder="Email")
+            message = st.text_area("Your Message", placeholder="How can we help?", height=120)
+            
+            # This is the line that will now be visible and red
             submitted = st.form_submit_button("Send Message", type="primary", use_container_width=True)
             
             if submitted:
                 if name and email and message:
-                    st.success(f"Thank you {name}! Your message has been sent successfully.")
+                    st.success(f"Thank you {name}! Message sent.")
                 else:
-                    st.error("Please fill in all fields before sending.")
-
+                    st.error("Please fill all fields.")
     st.write("---")
     st.markdown("<p style='text-align: center; color: #95a5a6;'>Follow us on Instagram @Girshala_Ghee</p>", unsafe_allow_html=True)

@@ -22,7 +22,7 @@ def contact_page():
             name = st.text_input("Full Name")
             email = st.text_input("Email Address")
             message = st.text_area("Your Message")
-            submitted = st.form_submit_button("Send Message 🚀", type="primary")
+            submitted = st.form_submit_button("Send Message", type="primary", use_container_width=True)
             
             if submitted:
                 st.success(f"Thank you {name}! Your message has been sent successfully.")

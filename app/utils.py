@@ -60,7 +60,6 @@ def local_css():
         padding: 10px 24px !important;
         font-weight: bold !important;
         transition: 0.3s !important;
-        width: 100% !important;  
     }
     button[kind="primary"]:hover {
         background-color: #bf360c !important;
